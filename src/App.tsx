@@ -1,17 +1,23 @@
-//import Home from './components/Home';
-import Home from './components/Home';
+import { useContext, useEffect } from 'react';
 import { Outlet } from 'react-router-dom';
-import { useContext } from 'react';
+
+import Home from './components/Home';
 import { Context } from './context/ContextProvider';
+import { FetchLogin } from './data/FetchLogin';
 
 function App() {
+    const { setUser, user } = useContext(Context)!;
 
-    const { user } = useContext(Context)!;
+    useEffect(() => {
+        FetchLogin.getProfile()
+            .then((data) => setUser(data))
+            .catch((er) => console.log(er));
+    }, []);
 
     return (
         <>
-            <Home nome={user}>
-                    <Outlet />
+            <Home user={user}>
+                <Outlet />
             </Home>
         </>
     );

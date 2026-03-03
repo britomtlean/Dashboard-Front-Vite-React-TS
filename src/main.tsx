@@ -11,10 +11,15 @@ import State from './components/State.tsx';
 import Effect from './components/Effect.tsx';
 import Socket from './components/Socket.tsx';
 import Tarefas from './components/Tarefas.tsx';
+import Login from './components/Login.tsx';
 //CONTEXT
 import { ContextProvider } from './context/ContextProvider';
 
 let router = createBrowserRouter([
+    {
+        path: '/Login',
+        element: <Login />,
+    },
     {
         path: '/',
         element: <App />,

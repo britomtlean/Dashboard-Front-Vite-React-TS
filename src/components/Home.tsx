@@ -1,36 +1,39 @@
-import type { ReactNode } from 'react';
-import { useContext, useState} from 'react';
+import { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { VscColorMode } from 'react-icons/vsc';
-import { Context } from '../context/ContextProvider';
 import { FaBeer } from 'react-icons/fa';
 
+//CONTEXT
+import { Context } from '../context/ContextProvider';
+
+//TYPE
+import type { ReactNode } from 'react';
+
 type Props = {
-    nome: string;
+    user: Record<string, any> | null;
     children?: ReactNode;
 };
 
-const Home = ({ nome, children }: Props) => {
+const Home = ({ user, children }: Props) => {
+    //CONTEXT
+    const { theme, setTheme } = useContext(Context)!;
 
     //STATE
     const [menu, setMenu] = useState<boolean>(false);
 
-    //CONTEXT
-    const { theme, setTheme } = useContext(Context)!;
-
     //////////////// FUNCTIONS /////////////////////////
     const clickMenu = (): void => {
-    menu ? setMenu(false) : setMenu(true);
-    }
+        menu ? setMenu(false) : setMenu(true);
+    };
 
-     const alterTheme = (): void => {
-         theme ? setTheme(false) : setTheme(true);
-     };
-     ////////////////////////////////////////////////////
+    const alterTheme = (): void => {
+        theme ? setTheme(false) : setTheme(true);
+    };
+    ////////////////////////////////////////////////////
 
     return (
         <>
-            <header className="w-screen min-h-20 flex justify-between items-center bg-gray-600 px-[10vw] z-50">
+            <header className="w-screen min-h-20 flex justify-between items-center bg-linear-to-br from-gray-700 to-gray-500 px-[10vw] z-50">
                 <div>
                     <FaBeer className="text-5xl text-white" onClick={clickMenu}></FaBeer>
                 </div>
@@ -46,31 +49,36 @@ const Home = ({ nome, children }: Props) => {
                         <Link
                             className="w-full border-b py-3 text-center bg-gray-300"
                             to={'/effect'}
-                            onClick={() => setMenu(false)}>
+                            onClick={() => setMenu(false)}
+                        >
                             useEffect
                         </Link>
                         <Link
                             className="w-full border-b py-3 text-center bg-gray-300"
                             to={'/state'}
-                            onClick={() => setMenu(false)}>
+                            onClick={() => setMenu(false)}
+                        >
                             useState
                         </Link>
                         <Link
                             className="w-full border-b py-3 text-center bg-gray-300"
                             to={'/ref'}
-                            onClick={() => setMenu(false)}>
+                            onClick={() => setMenu(false)}
+                        >
                             useRef
                         </Link>
                         <Link
                             className="w-full border-b py-3 text-center bg-gray-300"
                             to={'/socket'}
-                            onClick={() => setMenu(false)} >
+                            onClick={() => setMenu(false)}
+                        >
                             Bate Papo
                         </Link>
                         <Link
                             className="w-full border-b py-3 text-center bg-gray-300"
                             to={'/tarefas'}
-                            onClick={() => setMenu(false)}>
+                            onClick={() => setMenu(false)}
+                        >
                             Tarefas
                         </Link>
                     </div>
@@ -81,7 +89,7 @@ const Home = ({ nome, children }: Props) => {
                 </div>
 
                 <div className="flex flex-row gap-4 items-center justify-center text-white font-black">
-                    <h2>{nome}</h2>
+                    <h2>{user?.nome ?? "Default"}</h2>
                 </div>
             </header>
 

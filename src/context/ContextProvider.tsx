@@ -6,10 +6,8 @@ export type ContextType = {
     setTheme: React.Dispatch<React.SetStateAction<boolean>>;
     message: string;
     setMessage: React.Dispatch<React.SetStateAction<string>>;
-    user: string;
-    setUser: React.Dispatch<React.SetStateAction<string>>;
-    cpf: string;
-    setCpf: React.Dispatch<React.SetStateAction<string>>;
+    user: Record<string, any> | null;
+    setUser: React.Dispatch<React.SetStateAction<Record<string, any> | null>>;
 };
 
 //function createContext<T>(defaultValue: T): React.Context<T>
@@ -23,11 +21,10 @@ export const ContextProvider = ({ children }: PropsWithChildren) => {
 
     const [theme, setTheme] = useState<boolean>(false);
     const [message, setMessage] = useState<string>('Hello Context');
-    const [user, setUser] = useState<string>('Default');
-    const [cpf, setCpf] = useState<string>('123456789');
+    const [user, setUser] = useState<Record<string, any> | null>(null);
 
     return (
-        <Context.Provider value={{ theme, setTheme, message, setMessage, user, setUser, cpf, setCpf }}>
+        <Context.Provider value={{ theme, setTheme, message, setMessage, user, setUser }}>
             {children}
         </Context.Provider>
     );

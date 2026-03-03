@@ -1,5 +1,4 @@
-import { useState, useRef, useContext, useEffect} from 'react';
-import { Context } from '../context/ContextProvider';
+import { useState, useRef, useEffect} from 'react';
 import { Task } from '../data/Task';
 
 type TaskModel = {
@@ -8,14 +7,13 @@ type TaskModel = {
 
 const Tarefas = () => {
 
-    //CONTEXT
-    const { cpf } = useContext(Context)!;
-
-    //REF
+    //REF -- input
     const refTask = useRef<HTMLInputElement | null>(null);
 
-    //STATE
+    //STATE -- Tarefas armazenadas
     const [tasks, setTasks] = useState<Array<TaskModel>>([]);
+
+    ////////////////////////////////////////////////////////////////
 
     //FUNCTIONS
     const addTask = (e: React.FormEvent<HTMLFormElement>) => {
@@ -43,12 +41,13 @@ const Tarefas = () => {
     };
     //////////////////////////////////////////////////
 
-    //////////////////EFFECT/////////////////////////////
+    //EFFECT
     useEffect(()=>{
-        Task.getTask({cpf: cpf})
-        .then((data)=> {console.log('then'), setTasks(data)})
+        Task.getTask()
+        .then((data)=> { setTasks(data)})
         .catch((er)=>console.error(er))
     },[])
+    ///////////////////////////////////////////////////
 
     return (
         <div className="w-full h-full flex flex-col gap-6 justify-start items-center">

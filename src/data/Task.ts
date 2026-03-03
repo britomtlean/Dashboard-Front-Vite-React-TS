@@ -1,20 +1,19 @@
 export class Task {
-    private static readonly urlGet = 'http://localhost:3000/task/get';
+    private static readonly httpGetTask = 'http://localhost:3000/task/get';
 
-    static async getTask(user: any){
-        const res = await fetch(this.urlGet, {
-            method: 'POST',
-            headers: {'Content-Type': 'application/json'},
-            body: JSON.stringify(user)
+    static async getTask(){
+
+        const res = await fetch(this.httpGetTask, {
+            method: 'GET',
+            credentials: 'include',
         });
+        const data = await res.json();
 
         if(!res.ok){
-            const data = await res.json()
             throw Error(data.message)
         }
-        const data = await res.json();
-        console.log('Dados recebidos:',data)
 
+        console.log('Dados recebidos:',data)
         return data
     }
 }
