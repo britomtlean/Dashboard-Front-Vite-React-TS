@@ -19,8 +19,10 @@ export const Context: React.Context<ContextType | null> = createContext<ContextT
 
 export const ContextProvider = ({ children }: PropsWithChildren) => {
 
+    console.log('Context renderizou')
+    
     const [theme, setTheme] = useState<boolean>(false);
-    const [message, setMessage] = useState<string>('Hello Context');
+    const [message, setMessage] = useState<string>('Seja Bem vindo');
     const [user, setUser] = useState<Record<string, any> | null>(null);
 
     return (

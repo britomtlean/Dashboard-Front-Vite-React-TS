@@ -1,18 +1,32 @@
 import { useContext, useEffect } from 'react';
-import { Outlet } from 'react-router-dom';
+import { Outlet, useNavigate } from 'react-router-dom';
 
 import Home from './components/Home';
 import { Context } from './context/ContextProvider';
 import { FetchLogin } from './data/FetchLogin';
 
 function App() {
+
     const { setUser, user } = useContext(Context)!;
+    const navigate = useNavigate();
 
     useEffect(() => {
         FetchLogin.getProfile()
             .then((data) => setUser(data))
             .catch((er) => console.log(er));
     }, []);
+
+        useEffect(() => {
+
+            if (user) return;
+
+            const redirect = setTimeout(() => {navigate('/login')}, 3000);
+
+            return () => clearInterval(redirect)
+
+        },[user])
+
+
 
     return (
         <>

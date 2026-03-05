@@ -17,6 +17,8 @@ import Login from './components/Login.tsx';
 import Cadastro from './components/Cadastro.tsx';
 //CONTEXT
 import { ContextProvider } from './context/ContextProvider';
+import Welcome from './components/Welcome.tsx';
+import ErrorPage from './components/ErrorPage.tsx';
 
 let router = createBrowserRouter([
     {
@@ -30,7 +32,12 @@ let router = createBrowserRouter([
     {
         path: '/',
         element: <App />,
+        errorElement: <ErrorPage/>,
         children: [
+            {
+                index: true,
+                element: <Welcome/>
+            },
             {
                 path: '/state',
                 element: <State />,
