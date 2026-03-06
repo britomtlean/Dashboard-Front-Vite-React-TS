@@ -38,7 +38,7 @@ const Cadastro = () => {
         setError(null);
 
         try {
-            const res = await fetch('http://localhost:3000/auth/cadastro', {
+            const res = await fetch('https://back-end-dashboard-production.up.railway.app/auth/cadastro', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

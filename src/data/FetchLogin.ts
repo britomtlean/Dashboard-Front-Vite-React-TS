@@ -1,8 +1,8 @@
 export class FetchLogin {
     private static readonly httpLogin =
         window.location.hostname === 'localhost'
-            ? 'http://localhost:3000'
-            : 'https://back-end-dashboard-production.up.railway.app';
+            ? 'http://localhost:3000/auth/login'
+            : 'https://back-end-dashboard-production.up.railway.app/auth/login';
 
     private static readonly httpGetProfile =
         window.location.hostname === 'localhost'
