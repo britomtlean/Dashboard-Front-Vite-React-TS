@@ -1,13 +1,20 @@
 export class FetchLogin {
-    private static readonly httpLogin = 'http://localhost:3000/auth/login';
-    private static readonly httpGetProfile = 'http://localhost:3000/auth/validate';
+    private static readonly httpLogin =
+        window.location.hostname === 'localhost'
+            ? 'http://localhost:3000'
+            : 'https://back-end-dashboard-production.up.railway.app';
+
+    private static readonly httpGetProfile =
+        window.location.hostname === 'localhost'
+            ? 'http://localhost:3000/auth/validate'
+            : 'https://back-end-dashboard-production.up.railway.app/auth/validate';
 
     static async send(user: Record<string, string>): Promise<object> {
         const res = await fetch(this.httpLogin, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(user),
-            credentials: 'include'
+            credentials: 'include',
         });
 
         const data = await res.json();
@@ -21,7 +28,6 @@ export class FetchLogin {
     }
 
     static async getProfile(): Promise<Record<string, any>> {
-
         const res = await fetch(this.httpGetProfile, {
             method: 'GET',
             credentials: 'include',

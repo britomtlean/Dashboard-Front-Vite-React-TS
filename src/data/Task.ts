@@ -1,8 +1,23 @@
 export class Task {
-    private static readonly httpGetTask = 'http://localhost:3000/task/get';
-    private static readonly httpCreateTask = 'http://localhost:3000/task/create';
-    private static readonly httpDeleteTask = 'http://localhost:3000/task/delete/';
-    private static readonly httpUpdateTask = 'http://localhost:3000/task/update/';
+    private static readonly httpGetTask =
+        window.location.hostname === 'localhost'
+            ? 'http://localhost:3000/task/get'
+            : 'https://back-end-dashboard-production.up.railway.app/task/get';
+
+    private static readonly httpCreateTask =
+        window.location.hostname === 'localhost'
+            ? 'http://localhost:3000/task/create'
+            : 'https://back-end-dashboard-production.up.railway.app/task/create';
+
+    private static readonly httpDeleteTask =
+        window.location.hostname === 'localhost'
+            ? 'http://localhost:3000/task/delete/'
+            : 'https://back-end-dashboard-production.up.railway.app/task/delete/';
+
+    private static readonly httpUpdateTask =
+        window.location.hostname === 'localhost'
+            ? 'http://localhost:3000/task/update/'
+            : 'https://back-end-dashboard-production.up.railway.app/task/update/';
 
     static async getTask() {
         const res = await fetch(this.httpGetTask, {
