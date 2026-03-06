@@ -96,8 +96,8 @@ const Tarefas = () => {
                 />
             </form>
 
-            <ul className="w-full md:w-1/2">
-                <div className="w-full">
+            <ul className="w-full h-full md:w-1/2">
+                <div className="w-full h-full max-h-150 overflow-y-scroll!">
                     {tasks.length === 0 ? (
                         <h1 className="text-center mt-10">Nenhuma tarefa disponível</h1>
                     ) : (
