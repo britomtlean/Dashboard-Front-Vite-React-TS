@@ -38,9 +38,7 @@ const Home = ({ user, children }: Props) => {
     return (
         <>
             <header className="w-screen min-h-20 flex justify-between items-center bg-linear-to-br from-gray-700 to-gray-500 px-[10vw] z-50">
-
-                <button data-element= "Menu"
-                className="p-3 hover:bg-blue-100/10 hover:border/5">
+                <button data-element="Menu" className="p-3 hover:bg-blue-100/10 hover:border/5">
                     <GiHamburgerMenu
                         className="text-3xl text-white hover:pointer "
                         onClick={clickMenu}
@@ -73,14 +71,15 @@ const Home = ({ user, children }: Props) => {
                     </div>
                 </nav>
 
-                <button data-element="Theme"
-                 className="flex gap-4">
+                <button data-element="Theme" className="flex gap-4">
                     <VscColorMode className="text-2xl text-white" onClick={alterTheme} />
                     <h1 className="font-black text-white">Theme</h1>
                 </button>
 
-                <div data-element="User"
-                    className="flex flex-row gap-4 items-center justify-center text-white font-black">
+                <div
+                    data-element="User"
+                    className="flex flex-row gap-4 items-center justify-center text-white font-black"
+                >
                     <FaUser className="text-2xl" />
                     <h2 className="hidden md:block">{user?.nome ?? 'Default'}</h2>
                 </div>
@@ -93,14 +92,15 @@ const Home = ({ user, children }: Props) => {
             ></div>
 
             <main
-                className={`'w-screen h-screen py-4 px-[10vw] flex flex-col justify-start items-center transform transition-all delay-300 ease-in-out
+                className={`flex-1 w-screen py-4 px-[10vw] flex flex-col justify-start items-center
+                transform transition-all delay-300 ease-in-out
                 ${!theme ? 'bg-gray-400' : 'bg-gray-700'}`}
             >
                 {children}
             </main>
 
-            <footer className="w-screen px-[10vw] absolute bottom-0 py-4 bg-gray-600 text-[0.8rem] text-center z-50">
-                <h1>Todos os direitos reservados.</h1>
+            <footer className="w-screen px-[10vw] py-4 bg-gray-600 text-[0.9rem] text-white text-center">
+                <h1>By Leandro Brito</h1>
             </footer>
         </>
     );

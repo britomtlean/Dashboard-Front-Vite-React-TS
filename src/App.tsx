@@ -5,8 +5,7 @@ import Home from './components/Home';
 import { Context } from './context/ContextProvider';
 import { FetchLogin } from './data/FetchLogin';
 
-//ICONS
-import { AiOutlineLoading3Quarters } from 'react-icons/ai';
+import Loading from './components/Loading';
 
 function App() {
     const { setUser, user } = useContext(Context)!;
@@ -33,11 +32,9 @@ function App() {
 
     return (
         <>
-            {!user ? (
-                <div className="bg-slate-400 h-screen w-full justify-center items-center flex flex-col gap-4">
-                    <AiOutlineLoading3Quarters className="animate-spin text-4xl" />
-                    <h1 className='font-medium'>Loading...</h1>
-                </div>
+            {!user
+            ? (
+            <Loading/>
             ) : (
                 <Home user={user}>
                     <Outlet />

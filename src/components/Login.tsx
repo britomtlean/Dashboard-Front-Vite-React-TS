@@ -2,6 +2,7 @@ import { useState } from 'react';
 import type { ChangeEvent, FormEvent } from 'react';
 import { FetchLogin } from '../data/FetchLogin';
 import { useNavigate, Link } from 'react-router-dom';
+import Loading from './Loading';
 
 type LoginPayload = {
     cpf: string;
@@ -13,9 +14,11 @@ const Login = () => {
 
     const [cpf, setCPF] = useState<string>('');
     const [password, setPassword] = useState<string>('');
+    const [loading, setLoading] = useState<boolean>(false);
 
     const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
+        setLoading(true);
 
         const login: LoginPayload = {
             cpf,
@@ -26,19 +29,25 @@ const Login = () => {
 
         FetchLogin.send(login)
             .then(() => {
-                navigate('/');
+                (navigate('/'), setLoading(false));
             })
-            .catch((er) => alert(er));
+            .catch((er) => {
+                alert(er);
+                setLoading(false);
+            });
     };
 
     const handleDefault = async (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
+        setLoading(true);
 
-        FetchLogin.sendDefault().then(() => {
-            navigate('/');
-        })
-        .catch((er) => alert(er));
-
+        FetchLogin.sendDefault()
+            .then(() => {
+                (navigate('/'), setLoading(false));
+            })
+            .catch((er) => {
+                (alert(er), setLoading(false));
+            });
     };
 
     const handleCPFChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -49,6 +58,7 @@ const Login = () => {
         setPassword(e.target.value);
     };
 
+    if (loading) return <Loading />;
 
     return (
         <div className="w-screen h-screen flex flex-col gap-8 items-center justify-center bg-linear-to-br from-gray-700 to-gray-500 px-[10vw]">
