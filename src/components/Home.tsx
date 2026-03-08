@@ -3,7 +3,9 @@ import { Link } from 'react-router-dom';
 
 //ICONS
 import { VscColorMode } from 'react-icons/vsc';
-import { FaBeer, FaUser } from 'react-icons/fa';
+import { FaUser } from 'react-icons/fa';
+
+import { GiHamburgerMenu } from 'react-icons/gi';
 
 //CONTEXT
 import { Context } from '../context/ContextProvider';
@@ -36,56 +38,47 @@ const Home = ({ user, children }: Props) => {
     return (
         <>
             <header className="w-screen min-h-20 flex justify-between items-center bg-linear-to-br from-gray-700 to-gray-500 px-[10vw] z-50">
-                <div>
-                    <FaBeer className="text-5xl text-white" onClick={clickMenu}></FaBeer>
+                <div className="p-3 hover:bg-blue-100/10 hover:border/5">
+                    <GiHamburgerMenu
+                        className="text-3xl text-white hover:pointer "
+                        onClick={clickMenu}
+                    ></GiHamburgerMenu>
                 </div>
 
                 <nav
-                    className={`absolute top-20 left-0 w-3/5 min-h-full bg-slate-300 z-50
-                        border-r border-sky-300 shadow-[5px_10px_10px_#010100,10px_10px_10px_#000000,0_0_0_#FFFFFF]
+                    className={`absolute top-20 left-0 w-3/5 min-h-full bg-gray-700/90 z-50
+                        border-r border-sky-300 shadow-[2px_10px_3px_#010100,2px_20px_10px_#000000,0_10px_5px_#FFFFFF]
                         transform transition-all duration-700 ease-in-out
                         md:w-100
                         ${!menu ? '-translate-x-full opacity-0' : ' translate-x-0 opacity-100'} `}
                 >
-                    <div className="w-full min-h-full flex flex-col justify-center items-center">
-                        <Link
-                            className="w-full border-b py-3 text-center bg-gray-100"
-                            to={'/effect'}
-                            onClick={() => setMenu(false)}
-                        >
+                    <div className="w-full min-h-full flex flex-col justify-center items-center text-white font-mono [text-shadow:1px_1px_10px_black]]">
+                        <Link className="w-full py-3 text-center" to={'/'} onClick={() => setMenu(false)}>
+                            Home
+                        </Link>
+                        <Link className="w-full py-3 text-center" to={'/effect'} onClick={() => setMenu(false)}>
                             useEffect
                         </Link>
-                        <Link
-                            className="w-full border-b py-3 text-center bg-gray-100"
-                            to={'/state'}
-                            onClick={() => setMenu(false)}
-                        >
+                        <Link className="w-full py-3 text-center" to={'/state'} onClick={() => setMenu(false)}>
                             useState
                         </Link>
-                        <Link
-                            className="w-full border-b py-3 text-center bg-gray-100"
-                            to={'/ref'}
-                            onClick={() => setMenu(false)}
-                        >
+                        <Link className="w-full py-3 text-center" to={'/ref'} onClick={() => setMenu(false)}>
                             useRef
                         </Link>
-                        <Link
-                            className="w-full border-b py-3 text-center bg-gray-100"
-                            to={'/tarefas'}
-                            onClick={() => setMenu(false)}
-                        >
+                        <Link className="w-full py-3 text-center" to={'/tarefas'} onClick={() => setMenu(false)}>
                             Tarefas
                         </Link>
                     </div>
                 </nav>
 
-                <div>
+                <div className="flex gap-4">
                     <VscColorMode className="text-2xl text-white" onClick={alterTheme} />
+                    <h1 className="font-black text-white">Theme</h1>
                 </div>
 
                 <div className="flex flex-row gap-4 items-center justify-center text-white font-black">
-                    <FaUser className='text-2xl' />
-                    <h2 className='hidden md:block'>{user?.nome ?? 'Default'}</h2>
+                    <FaUser className="text-2xl" />
+                    <h2 className="hidden md:block">{user?.nome ?? 'Default'}</h2>
                 </div>
             </header>
 
@@ -102,7 +95,7 @@ const Home = ({ user, children }: Props) => {
                 {children}
             </main>
 
-            <footer className="w-screen px-[10vw] py-7 absolute left-0 bottom-0 transform-y translate-y-0 bg-gray-600 text-[1rem] text-center z-50">
+            <footer className="w-screen px-[10vw] py-4 absolute left-0 bottom-0 transform-y translate-y-0 bg-gray-600 text-[0.8rem] text-center z-50">
                 <h1>Todos os direitos reservados.</h1>
             </footer>
         </>

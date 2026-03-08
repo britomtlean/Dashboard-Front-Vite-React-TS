@@ -1,4 +1,7 @@
+import { getToken } from "../services/functions";
+
 export class FetchLogin {
+    //////////////////////////////////////////////////////////////////////////////
     private static readonly httpLogin =
         window.location.hostname === 'localhost'
             ? 'http://localhost:3000/auth/login'
@@ -8,6 +11,8 @@ export class FetchLogin {
         window.location.hostname === 'localhost'
             ? 'http://localhost:3000/auth/validate'
             : 'https://back-end-dashboard-production.up.railway.app/auth/validate';
+
+    //////////////////////////////////////////////////////////////////////////////
 
     static async send(user: Record<string, string>): Promise<object> {
         const res = await fetch(this.httpLogin, {
@@ -23,14 +28,22 @@ export class FetchLogin {
             throw Error(data.message);
         }
 
-        console.log('Dados recebidos:', data);
+        localStorage.setItem('token', JSON.stringify(data?.token))
+        console.log('Dados recebidos:', data?.token);
         return data;
     }
 
     static async getProfile(): Promise<Record<string, any>> {
+
+
+        const token: string | null =  await getToken()
+
         const res = await fetch(this.httpGetProfile, {
             method: 'GET',
             credentials: 'include',
+            headers: {
+                Authorization: `Bearer ${JSON.parse(token)}`,
+            },
         });
         const data = await res.json();
 

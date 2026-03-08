@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import type { ChangeEvent, FormEvent  } from 'react'
+import type { ChangeEvent, FormEvent } from 'react';
 import { FetchLogin } from '../data/FetchLogin';
 import { useNavigate, Link } from 'react-router-dom';
 
@@ -9,8 +9,7 @@ type LoginPayload = {
 };
 
 const Login = () => {
-
-    const navigate = useNavigate()
+    const navigate = useNavigate();
 
     const [cpf, setCPF] = useState<string>('');
     const [password, setPassword] = useState<string>('');
@@ -26,8 +25,10 @@ const Login = () => {
         console.log(login);
 
         FetchLogin.send(login)
-        .then(()=>navigate('/'))
-        .catch((er)=>alert(er))
+            .then(() => {
+                navigate('/');
+            })
+            .catch((er) => alert(er));
     };
 
     const handleCPFChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -56,7 +57,11 @@ const Login = () => {
                         placeholder="Insira o CPF"
                         value={cpf}
                         onChange={handleCPFChange}
-                        className="p-3 rounded-lg border border-gray-300 focus:outline-none focus:bg-white/40 transition"
+                        className="p-3 rounded-lg border border-gray-300
+                        focus:outline-none
+                        focus:border-2 focus:border-cyan-300
+                        transition
+                        duration-200"
                     />
 
                     <input
@@ -64,17 +69,28 @@ const Login = () => {
                         placeholder="Insira a senha"
                         value={password}
                         onChange={handlePasswordChange}
-                        className="p-3 rounded-lg border border-gray-300 focus:ring-2 focus:bg-white/40 transition"
+                        className="p-3 rounded-lg border border-gray-300
+                        focus:outline-none
+                        focus:border-2 focus:border-cyan-300
+                        transition
+                        duration-200"
                     />
 
                     <button
                         type="submit"
-                        className="mt-2 bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 rounded-lg transition duration-200"
+                        className="mt-2 bg-blue-600 text-white font-semibold py-3 rounded-lg
+                        hover:bg-blue-700
+                        transition duration-200
+                        focus:outline-none
+                        focus:ring-2 focus:ring-cyan-500
+                        focus:border-white"
                     >
                         Entrar
                     </button>
 
-                    <Link to={'/cadastro'} className='text-white font-light decoration-zinc-400 underline'>Não possui cadastro?</Link>
+                    <Link to={'/cadastro'} className="text-white font-light decoration-zinc-400 underline">
+                        Não possui cadastro?
+                    </Link>
                 </form>
             </div>
         </div>

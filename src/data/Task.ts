@@ -1,4 +1,7 @@
+import { getToken } from "../services/functions";
+
 export class Task {
+    //////////////////////////////////////////////////////////////////////////////////
     private static readonly httpGetTask =
         window.location.hostname === 'localhost'
             ? 'http://localhost:3000/task/get'
@@ -18,11 +21,17 @@ export class Task {
         window.location.hostname === 'localhost'
             ? 'http://localhost:3000/task/update/'
             : 'https://back-end-dashboard-production.up.railway.app/task/update/';
+    /////////////////////////////////////////////////////////////////////////////////////
 
     static async getTask() {
+        const token = await getToken()
+
         const res = await fetch(this.httpGetTask, {
             method: 'GET',
             credentials: 'include',
+            headers: {
+                Authorization: `Bearer ${JSON.parse(token)}`,
+            },
         });
         const data = await res.json();
 
@@ -35,9 +44,13 @@ export class Task {
     }
 
     static async createTask(task: Record<string, any>) {
+        const token = await getToken();
+
         const res = await fetch(this.httpCreateTask, {
             method: 'POST',
-            headers: { 'Content-Type': 'Application/json' },
+            headers: {
+                'Content-Type': 'Application/json',
+                Authorization: `Bearer ${JSON.parse(token)}` },
             credentials: 'include',
             body: JSON.stringify(task),
         });
@@ -52,9 +65,14 @@ export class Task {
     }
 
     static async deleteTask(id: number) {
+        const token = await getToken();
+
         const res = await fetch(`${this.httpDeleteTask + id}`, {
             method: 'DELETE',
             credentials: 'include',
+            headers: {
+                Authorization: `Bearer ${JSON.parse(token)}`,
+            },
         });
         const data = await res.json();
 
@@ -62,14 +80,19 @@ export class Task {
             throw Error(data.message);
         }
 
-        console.log('Task apagada com sucesso!:', data);
+        console.log(data);
         return data;
     }
 
     static async updateTask(id: number) {
+        const token = await getToken();
+
         const res = await fetch(`${this.httpUpdateTask + id}`, {
             method: 'PUT',
             credentials: 'include',
+            headers: {
+                Authorization: `Bearer ${JSON.parse(token)}`,
+            },
         });
         const data = await res.json();
 
@@ -77,7 +100,7 @@ export class Task {
             throw Error(data.message);
         }
 
-        console.log('Task apagada com sucesso!:', data);
+        console.log(data);
         return data;
     }
 }

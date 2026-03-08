@@ -77,11 +77,9 @@ const Cadastro = () => {
                         placeholder="Nome completo"
                         value={form.nome}
                         onChange={handleChange}
-                        className="                        w-full px-4 py-2 bg-gray-200
-                        border border-gray-300 rounded-lg shadow-sm
+                        className="p-3 rounded-lg border border-gray-300 w-full px-4 py-2 shadow-sm
                         focus:outline-none
-                        focus:ring-2 focus:ring-blue-500
-                        focus:border-blue-500
+                        focus:border-2 focus:border-cyan-300
                         transition
                         duration-200"
                         required
@@ -93,11 +91,9 @@ const Cadastro = () => {
                         placeholder="CPF"
                         value={form.cpf}
                         onChange={handleChange}
-                        className="                        w-full px-4 py-2 bg-gray-200
-                        border border-gray-300 rounded-lg shadow-sm
+                        className="p-3 rounded-lg border border-gray-300 w-full px-4 py-2 shadow-sm
                         focus:outline-none
-                        focus:ring-2 focus:ring-blue-500
-                        focus:border-blue-500
+                        focus:border-2 focus:border-cyan-300
                         transition
                         duration-200"
                         required
@@ -109,11 +105,9 @@ const Cadastro = () => {
                         placeholder="Email"
                         value={form.email}
                         onChange={handleChange}
-                        className="                        w-full px-4 py-2 bg-gray-200
-                        border border-gray-300 rounded-lg shadow-sm
+                        className="p-3 rounded-lg border border-gray-300 w-full px-4 py-2 shadow-sm
                         focus:outline-none
-                        focus:ring-2 focus:ring-blue-500
-                        focus:border-blue-500
+                        focus:border-2 focus:border-cyan-300
                         transition
                         duration-200"
                         required
@@ -125,11 +119,9 @@ const Cadastro = () => {
                         placeholder="Senha"
                         value={form.senha}
                         onChange={handleChange}
-                        className="                        w-full px-4 py-2 bg-gray-200
-                        border border-gray-300 rounded-lg shadow-sm
+                        className="p-3 rounded-lg border border-gray-300 w-full px-4 py-2 shadow-sm
                         focus:outline-none
-                        focus:ring-2 focus:ring-blue-500
-                        focus:border-blue-500
+                        focus:border-2 focus:border-cyan-300
                         transition
                         duration-200"
                         required
@@ -138,15 +130,20 @@ const Cadastro = () => {
                     <button
                         type="submit"
                         disabled={loading}
-                        className="bg-blue-600 text-white py-2 rounded-lg font-semibold hover:bg-blue-700 transition disabled:opacity-50"
+                        className="mt-2 bg-blue-600 text-white font-semibold py-3 rounded-lg
+                        hover:bg-blue-700
+                        transition duration-200
+                        focus:outline-none
+                        focus:ring-2 focus:ring-cyan-500
+                        focus:border-white"
                     >
                         {loading ? 'Cadastrando...' : 'Cadastrar'}
                     </button>
                 </form>
 
-                {message && <p className="text-green-600 text-center mt-4">{message}</p>}
+                {message && <p className="text-green-600 font-bold text-center mt-4">{message}</p>}
 
-                {error && <p className="text-red-600 text-center mt-4">{error}</p>}
+                {error && <p className="text-red-600 font-bold text-center mt-4">{error}</p>}
             </div>
         </div>
     );
