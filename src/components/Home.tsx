@@ -20,14 +20,21 @@ type Props = {
 
 const Home = ({ children }: Props) => {
     //CONTEXT
-    const { theme, setTheme } = useContext(Context)!;
+    const { theme, setTheme, user } = useContext(Context)!;
 
     //STATE
     const [menu, setMenu] = useState<boolean>(false);
+    const [config, setConfiig] = useState<boolean>(false);
 
     //////////////// FUNCTIONS /////////////////////////
     const clickMenu = (): void => {
         menu ? setMenu(false) : setMenu(true);
+        setConfiig(false);
+    };
+
+    const clickConfig = (): void => {
+        config ? setConfiig(false) : setConfiig(true);
+        setMenu(false);
     };
 
     const alterTheme = (): void => {
@@ -79,7 +86,19 @@ const Home = ({ children }: Props) => {
                 <button
                     data-element="User"
                     className="flex flex-row gap-4 items-center justify-center text-white font-black p-4 bg-gray-400/60 rounded-[100%] focus:bg-slate-600"
+                    onClick={clickConfig}
                 >
+                    <div
+                        className={`absolute top-20 right-0 w-1/2 min-h-1/4 bg-gray-700/90 z-50 text-center text-[0.7rem] p-4
+                        border-r border-sky-300 shadow-[2px_0px_3px_#010100,2px_0px_10px_#000000,0_0px_5px_#FFFFFF]
+                        transform transition-all duration-700 ease-in-out
+                        md:w-100 md:text-[1.0rem]
+                        ${!config ? 'hidden opacity-0' : ' translate-x-0 opacity-100'} `}
+                    >
+                        <h2>{user?.nome}</h2>
+                        <h2>{user?.email}</h2>
+                        <h2>{user?.cpf}</h2>
+                    </div>
                     <FaUser className="text-2xl" />
                 </button>
             </header>
@@ -87,7 +106,9 @@ const Home = ({ children }: Props) => {
             <div
                 className={`transform transition-all duration-500 ease-out
                     ${menu ? 'absolute w-screen min-h-screen bg-black/60 ' : 'opacity-0 invisible'}`}
-                onClick={() => setMenu(false)}
+                onClick={() => {
+                    (setMenu(false), setConfiig(false));
+                }}
             ></div>
 
             <main
