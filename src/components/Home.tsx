@@ -109,12 +109,14 @@ const Home = ({ children }: Props) => {
             <main
                 className={`flex-1 w-screen min-h-screen h-full py-4 px-[5vw] flex flex-col justify-start items-center
                             transform transition-all delay-300 ease-in-out relative
-                            ${!theme ? 'bg-gray-400' : 'bg-gray-700'}
-                            md:px-[10vw]
-                            before:content-[''] before:absolute before:inset-0 before:bg-black/70 before:min-h-screen
-                            before:transition-opacity before:duration-500 before:delay-75
-                            ${menu || config ? 'before:opacity-100' : 'before:opacity-0'}
-                        `}
+-                           ${!theme ? 'bg-gray-400' : 'bg-gray-700'}
+
+                            ${
+                                menu || config
+                                    ? "before:content-[''] before:absolute before:inset-0 before:bg-black/70 before:min-h-screen before:transition-opacity before:duration-500 before:delay-75 before:opacity-100"
+                                    : 'before:opacity-0'
+                            }
+-                           md:px-[10vw]`}
                 onClick={() => {
                     (setConfiig(false), setMenu(false));
                 }}
