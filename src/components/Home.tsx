@@ -75,6 +75,9 @@ const Home = ({ children }: Props) => {
                         <Link className="w-full py-3 text-center" to={'/tarefas'} onClick={() => setMenu(false)}>
                             Tarefas
                         </Link>
+                        <Link className="w-full py-3 text-center" to={'/treino'} onClick={() => setMenu(false)}>
+                            Treino
+                        </Link>
                     </div>
                 </nav>
 

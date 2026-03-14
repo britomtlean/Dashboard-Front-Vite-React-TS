@@ -9,6 +9,9 @@ const Treino = () => {
                 (console.log('componente treino', data), setDados(data));
             })
             .catch((er) => console.error(er));
+
+            const today = new Date()
+            console.log(today.getDay())
     }, []);
 
     return (
