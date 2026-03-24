@@ -12,16 +12,20 @@ import Ref from './components/React-Hooks/Ref.tsx';
 import State from './components/React-Hooks/State.tsx';
 import Effect from './components/React-Hooks/Effect.tsx';
 
+//COMPONENTS
+import ErrorPage from './components/ErrorPage.tsx';
+import Sobre from './components/Sobre.tsx';
+import UpdateProfile from './components/profile/UpdateProfile.tsx';
 import Tarefas from './components/Tarefas.tsx';
 import Login from './components/Login.tsx';
 import Cadastro from './components/Cadastro.tsx';
 //CONTEXT
 import { ContextProvider } from './context/ContextProvider';
-//import Welcome from './components/Welcome.tsx';
-import ErrorPage from './components/ErrorPage.tsx';
-import Sobre from './components/Sobre.tsx';
-import Treino from './components/Treino.tsx';
-import UpdateProfile from './components/profile/UpdateProfile.tsx';
+
+//TREINOS
+import CreateTreino from './components/training/CreateTreino.tsx';
+import MenuTreino from './components/training/MenuTreino.tsx';
+import DiaTreino from './components/training/DiaTreino.tsx';
 
 let router = createBrowserRouter([
     {
@@ -59,7 +63,15 @@ let router = createBrowserRouter([
             },
             {
                 path: '/treino',
-                element: <Treino />,
+                element: <MenuTreino />,
+            },
+            {
+                path: '/treino-do-dia',
+                element: <DiaTreino />,
+            },
+            {
+                path: '/criar-treino',
+                element: <CreateTreino />,
             },
             {
                 path: '/update-profile',
