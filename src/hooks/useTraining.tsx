@@ -1,20 +1,36 @@
-import { useState, useEffect } from "react";
-import { Treining } from "../data/Training";
+import { useState, useEffect } from 'react';
+import { Training } from '../data/Training';
 
 const useTraining = () => {
+    const [treinos, setTreinos] = useState<Array<Record<string, any>>>([]);
+    const [exercises, setExercises] = useState<Array<Record<string, any>>>([]);
+    const [musculos, setMusculos] = useState<Array<Record<string, any>>>([]);
 
-    const [dados, setDados] = useState<Array<Record<string, any>>>([]);
+    useEffect(() => {
+        Training.getAllTrainings()
+            .then((data) => setTreinos(data))
+            .catch((er) => {
+                console.error(er);
+            });
+    }, []);
 
-        useEffect(() => {
-            Treining.treiningDay()
-                .then((data) => setDados(data))
-                .catch((er) => {
-                    console.error(er);
-                });
-        }, []);
+    useEffect(() => {
+        Training.getMusculos()
+            .then((data) => setMusculos(data))
+            .catch((er) => {
+                console.error(er);
+            });
+    }, []);
 
+    useEffect(() => {
+        Training.getExercices()
+            .then((data) => setExercises(data))
+            .catch((er) => {
+                console.error(er);
+            });
+    }, []);
 
-        return { dados, setDados}
-}
+    return { treinos, setTreinos, exercises, setExercises, musculos, setMusculos };
+};
 
-export default useTraining
+export default useTraining;

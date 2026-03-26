@@ -63,7 +63,7 @@ const Cadastro = () => {
     };
 
     return (
-        <div className="w-screen h-screen flex items-center justify-center bg-linear-to-br from-gray-700 to-gray-500 px-[10vw]">
+        <div className="w-screen h-screen flex items-center justify-center bg-gray-500 px-[10vw]">
             <div
                 className="w-full max-w-md p-8 rounded-2xl shadow-lg
                  bg-white/10 backdrop-blur-md"

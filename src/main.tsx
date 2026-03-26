@@ -6,22 +6,22 @@ import { createBrowserRouter, RouterProvider } from 'react-router';
 import './index.css';
 //COMPONENTS
 import App from './App.tsx';
-
-//Hooks
-import Ref from './components/React-Hooks/Ref.tsx';
-import State from './components/React-Hooks/State.tsx';
-import Effect from './components/React-Hooks/Effect.tsx';
-
-import Tarefas from './components/Tarefas.tsx';
-import Login from './components/Login.tsx';
-import Cadastro from './components/Cadastro.tsx';
-//CONTEXT
-import { ContextProvider } from './context/ContextProvider';
-//import Welcome from './components/Welcome.tsx';
+import SelectHook from './components/hooks/SelectHook.tsx';
 import ErrorPage from './components/ErrorPage.tsx';
 import Sobre from './components/Sobre.tsx';
-import Treino from './components/Treino.tsx';
 import UpdateProfile from './components/profile/UpdateProfile.tsx';
+import Login from './components/Login.tsx';
+import Cadastro from './components/Cadastro.tsx';
+
+//CONTEXT
+import { ContextProvider } from './context/ContextProvider';
+
+//TREINOS
+import CreateTreino from './components/training/CreateTreino.tsx';
+import MenuTreino from './components/training/MenuTreino.tsx';
+import DiaTreino from './components/training/DiaTreino.tsx';
+import NewExercise from './components/training/NewExercise.tsx';
+import Tarefas from './components/tasks/Tarefas.tsx';
 
 let router = createBrowserRouter([
     {
@@ -42,16 +42,8 @@ let router = createBrowserRouter([
                 element: <Sobre />,
             },
             {
-                path: '/state',
-                element: <State />,
-            },
-            {
-                path: '/ref',
-                element: <Ref />,
-            },
-            {
-                path: '/effect',
-                element: <Effect />,
+                path: '/hooks',
+                element: <SelectHook />,
             },
             {
                 path: '/tarefas/',
@@ -59,11 +51,23 @@ let router = createBrowserRouter([
             },
             {
                 path: '/treino',
-                element: <Treino />,
+                element: <MenuTreino />,
+            },
+            {
+                path: '/treino-do-dia',
+                element: <DiaTreino />,
+            },
+            {
+                path: '/criar-treino',
+                element: <CreateTreino />,
             },
             {
                 path: '/update-profile',
                 element: <UpdateProfile />,
+            },
+            {
+                path: '/Novo-Exercicio/:id/:musculo/:dia',
+                element: <NewExercise />,
             },
         ],
     },

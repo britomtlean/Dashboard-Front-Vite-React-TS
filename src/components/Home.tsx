@@ -48,7 +48,7 @@ const Home = ({ children }: Props) => {
 
     return (
         <>
-            <header className="w-screen min-h-20 flex justify-between items-center bg-linear-to-br from-gray-700 to-gray-500 px-[10vw] z-50">
+            <header className="w-screen min-h-20 flex justify-between items-center bg-gradient-to-b from-gray-500 to-gray-800 px-[10vw] z-50">
                 <button data-element="Menu" className="p-3 hover:bg-blue-100/10 hover:border/5">
                     <GiHamburgerMenu
                         className="text-3xl text-white hover:pointer "
@@ -67,14 +67,8 @@ const Home = ({ children }: Props) => {
                         <Link className="w-full py-3 text-center" to={'/'} onClick={() => setMenu(false)}>
                             Home
                         </Link>
-                        <Link className="w-full py-3 text-center" to={'/effect'} onClick={() => setMenu(false)}>
-                            useEffect
-                        </Link>
-                        <Link className="w-full py-3 text-center" to={'/state'} onClick={() => setMenu(false)}>
-                            useState
-                        </Link>
-                        <Link className="w-full py-3 text-center" to={'/ref'} onClick={() => setMenu(false)}>
-                            useRef
+                        <Link className="w-full py-3 text-center" to={'/hooks'} onClick={() => setMenu(false)}>
+                            Hooks
                         </Link>
                         <Link className="w-full py-3 text-center" to={'/tarefas'} onClick={() => setMenu(false)}>
                             Tarefas
@@ -105,7 +99,14 @@ const Home = ({ children }: Props) => {
                         <h2>{user?.nome}</h2>
                         <h2>{user?.email}</h2>
                         <h2>{user?.cpf}</h2>
-                        <button className='w-1/2 p-1 mt-2 bg-slate-400 rounded-lg' onClick={() => { navigate('/update-profile')}}>Editar</button>
+                        <button
+                            className="w-1/2 p-1 mt-2 bg-slate-400 rounded-lg"
+                            onClick={() => {
+                                navigate('/update-profile');
+                            }}
+                        >
+                            Editar
+                        </button>
                     </div>
                     <FaUser className="text-2xl" />
                 </div>
@@ -114,7 +115,7 @@ const Home = ({ children }: Props) => {
             <main
                 className={`flex-1 w-screen min-h-screen h-full py-4 px-[5vw] flex flex-col justify-start items-center
                             transform transition-all delay-300 ease-in-out relative
--                           ${!theme ? 'bg-gray-400' : 'bg-gray-700'}
+-                           ${!theme ? 'bg-gradient-to-b from-slate-400 to-gray-600' : 'bg-gradient-to-b from-gray-600 to-slate-700'}
 
                             ${
                                 menu || config
@@ -129,7 +130,7 @@ const Home = ({ children }: Props) => {
                 {children}
             </main>
 
-            <footer className="w-screen px-[10vw] py-4 bg-gray-600 text-[0.9rem] text-white text-center">
+            <footer className="w-screen px-[10vw] py-4 bg-gradient-to-t from-gray-700 to-gray-800 text-[0.9rem] text-white text-center">
                 <h1>By Leandro Brito</h1>
             </footer>
         </>
