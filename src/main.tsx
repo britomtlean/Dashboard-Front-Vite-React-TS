@@ -27,6 +27,7 @@ import CreateTreino from './components/training/CreateTreino.tsx';
 import MenuTreino from './components/training/MenuTreino.tsx';
 import DiaTreino from './components/training/DiaTreino.tsx';
 import SelectHook from './components/hooks/SelectHook.tsx';
+import NewExercise from './components/training/NewExercise.tsx';
 
 let router = createBrowserRouter([
     {
@@ -81,6 +82,10 @@ let router = createBrowserRouter([
             {
                 path: '/update-profile',
                 element: <UpdateProfile />,
+            },
+            {
+                path: '/Novo-Exercicio/:id/:musculo/:dia',
+                element: <NewExercise />,
             },
         ],
     },

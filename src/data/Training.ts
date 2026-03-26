@@ -7,6 +7,8 @@ export class Training {
             ? 'http://localhost:3000/training/getday'
             : 'https://back-end-dashboard-production.up.railway.app/training/getday';
 
+    private static readonly urlAddExercise: string = `${import.meta.env.VITE_API_URL}training/add`;
+
     static async allTrainings() {
         const token = await getToken();
 
@@ -28,12 +30,11 @@ export class Training {
     }
 
     static async createTraining(training: TrainingBody) {
-
         const req = JSON.stringify(training);
-        console.log('Requisição:',req)
+        console.log('Requisição:', req);
 
-        if(!req){
-            throw new Error('Erro ao enviar Requisição')
+        if (!req) {
+            throw new Error('Erro ao enviar Requisição');
         }
 
         const token = await getToken();
@@ -44,7 +45,7 @@ export class Training {
                 'Content-Type': 'application/json',
                 Authorization: `Bearer ${JSON.parse(token)}`,
             },
-            body: req
+            body: req,
         });
 
         const data = await res.json();
@@ -99,5 +100,31 @@ export class Training {
 
         console.log('response getExercices:', data);
         return data;
+    }
+
+    ////////////////////////////////////// ADICIONAR EXERCICIOS \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+    static async addExercices(exercise: Record<string, any>){
+        const req = JSON.stringify(exercise);
+        console.log('Dados da requisição:', req);
+
+        const token = await getToken();
+
+          const res = await fetch(this.urlAddExercise, {
+              method: 'POST',
+              headers: {
+                  'Content-Type': 'application/json',
+                  Authorization: `Bearer ${JSON.parse(token)}`,
+              },
+              body: req
+          });
+
+          const data = await res.json();
+
+          if (!res.ok) {
+              throw new Error(data.message || 'Erro de serviço');
+          }
+
+          console.log('Response addExercices:', data);
+          return data;
     }
 }

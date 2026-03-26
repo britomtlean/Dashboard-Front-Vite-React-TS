@@ -17,7 +17,7 @@ const MenuTreino = () => {
             </div>
             <div className="flex flex-col gap-4 w-full h-full">
                 <button
-                    className="bg-blue-500 flex-1 text-white py-2 p-6 rounded cursor-pointer border-gray-300"
+                    className="btn-primary"
                     onClick={() => {
                         navigate('/treino-do-dia');
                     }}
@@ -25,7 +25,7 @@ const MenuTreino = () => {
                     Meus treinos
                 </button>
                 <button
-                    className="bg-blue-500 flex-1 text-white py-2 p-6 rounded cursor-pointer border-gray-300"
+                    className="btn-primary"
                     onClick={() => {
                         navigate('/criar-treino');
                     }}
