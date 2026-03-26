@@ -7,7 +7,7 @@ const useTraining = () => {
     const [musculos, setMusculos] = useState<Array<Record<string, any>>>([]);
 
     useEffect(() => {
-        Training.allTrainings()
+        Training.getAllTrainings()
             .then((data) => setTreinos(data))
             .catch((er) => {
                 console.error(er);
@@ -15,7 +15,7 @@ const useTraining = () => {
     }, []);
 
     useEffect(() => {
-        Training.getMuscuslos()
+        Training.getMusculos()
             .then((data) => setMusculos(data))
             .catch((er) => {
                 console.error(er);

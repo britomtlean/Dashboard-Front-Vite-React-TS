@@ -1,18 +1,21 @@
 import { getToken } from '../services/functions';
-import type { TrainingBody } from '../types/Training';
+import type { ExerciseBody, TrainingBody } from '../types/Training';
 
 export class Training {
-    private static readonly urlGetTarefa: string =
-        window.location.hostname === 'localhost'
-            ? 'http://localhost:3000/training/getday'
-            : 'https://back-end-dashboard-production.up.railway.app/training/getday';
+    private static readonly urlGetAllTrainings: string = `${import.meta.env.VITE_API_URL}training/getday`;
+
+    private static readonly urlGetMusculos: string = `${import.meta.env.VITE_API_URL}training/getTypes`;
+
+    private static readonly urlGetExercises: string = `${import.meta.env.VITE_API_URL}training/getExercises`;
+
+    private static readonly urlAddTraining: string = `${import.meta.env.VITE_API_URL}training/create`;
 
     private static readonly urlAddExercise: string = `${import.meta.env.VITE_API_URL}training/add`;
 
-    static async allTrainings() {
+    static async getAllTrainings() {
         const token = await getToken();
 
-        const res = await fetch(this.urlGetTarefa, {
+        const res = await fetch(this.urlGetAllTrainings, {
             method: 'GET',
             headers: {
                 Authorization: `Bearer ${JSON.parse(token)}`,
@@ -29,40 +32,10 @@ export class Training {
         return data;
     }
 
-    static async createTraining(training: TrainingBody) {
-        const req = JSON.stringify(training);
-        console.log('Requisição:', req);
-
-        if (!req) {
-            throw new Error('Erro ao enviar Requisição');
-        }
-
+    static async getMusculos() {
         const token = await getToken();
 
-        const res = await fetch('http://localhost:3000/training/create', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                Authorization: `Bearer ${JSON.parse(token)}`,
-            },
-            body: req,
-        });
-
-        const data = await res.json();
-
-        if (!res.ok) {
-            throw new Error(data.message);
-        }
-
-        console.log('Response createTraining:', data);
-        return data;
-    }
-
-    //////////////////////////////// RECEBER MUSCULOS PARA TREINOS //////////////////////////////////////////
-    static async getMuscuslos() {
-        const token = await getToken();
-
-        const res = await fetch('http://localhost:3000/training/getTypes', {
+        const res = await fetch(this.urlGetMusculos, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -80,11 +53,10 @@ export class Training {
         return data;
     }
 
-    /////////////////////////////////// RECEBER EXERCICIOS POR MUSCULOS ////////////////////////////////////////
     static async getExercices() {
         const token = await getToken();
 
-        const res = await fetch('http://localhost:3000/training/getExercises', {
+        const res = await fetch(this.urlGetExercises, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -102,29 +74,61 @@ export class Training {
         return data;
     }
 
-    ////////////////////////////////////// ADICIONAR EXERCICIOS \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
-    static async addExercices(exercise: Record<string, any>){
-        const req = JSON.stringify(exercise);
-        console.log('Dados da requisição:', req);
+    static async addTraining(training: TrainingBody) {
+        const req = JSON.stringify(training);
+        console.log('Dados enviados:', req);
+
+        if (!req) {
+            throw new Error('Dados de requisição inválidos!');
+        }
 
         const token = await getToken();
 
-          const res = await fetch(this.urlAddExercise, {
-              method: 'POST',
-              headers: {
-                  'Content-Type': 'application/json',
-                  Authorization: `Bearer ${JSON.parse(token)}`,
-              },
-              body: req
-          });
+        const res = await fetch(this.urlAddTraining, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                Authorization: `Bearer ${JSON.parse(token)}`,
+            },
+            body: req,
+        });
 
-          const data = await res.json();
+        const data = await res.json();
 
-          if (!res.ok) {
-              throw new Error(data.message || 'Erro de serviço');
-          }
+        if (!res.ok) {
+            throw new Error(data.message);
+        }
 
-          console.log('Response addExercices:', data);
-          return data;
+        console.log('Response addTraining:', data);
+        return data;
+    }
+
+    static async addExercices(exercise: ExerciseBody) {
+        const req = JSON.stringify(exercise);
+        console.log('Dados enviados:', req);
+
+        if (!req) {
+            throw new Error('Dados de requisição inválidos!');
+        }
+
+        const token = await getToken();
+
+        const res = await fetch(this.urlAddExercise, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                Authorization: `Bearer ${JSON.parse(token)}`,
+            },
+            body: req,
+        });
+
+        const data = await res.json();
+
+        if (!res.ok) {
+            throw new Error(data.message || 'Erro de serviço');
+        }
+
+        console.log('Response addExercices:', data);
+        return data;
     }
 }

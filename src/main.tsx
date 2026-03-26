@@ -6,19 +6,13 @@ import { createBrowserRouter, RouterProvider } from 'react-router';
 import './index.css';
 //COMPONENTS
 import App from './App.tsx';
-
-//Hooks
-import Ref from './components/hooks/Ref.tsx';
-import State from './components/hooks/State.tsx';
-import Effect from './components/hooks/Effect.tsx';
-
-//COMPONENTS
+import SelectHook from './components/hooks/SelectHook.tsx';
 import ErrorPage from './components/ErrorPage.tsx';
 import Sobre from './components/Sobre.tsx';
 import UpdateProfile from './components/profile/UpdateProfile.tsx';
-import Tarefas from './components/Tarefas.tsx';
 import Login from './components/Login.tsx';
 import Cadastro from './components/Cadastro.tsx';
+
 //CONTEXT
 import { ContextProvider } from './context/ContextProvider';
 
@@ -26,8 +20,8 @@ import { ContextProvider } from './context/ContextProvider';
 import CreateTreino from './components/training/CreateTreino.tsx';
 import MenuTreino from './components/training/MenuTreino.tsx';
 import DiaTreino from './components/training/DiaTreino.tsx';
-import SelectHook from './components/hooks/SelectHook.tsx';
 import NewExercise from './components/training/NewExercise.tsx';
+import Tarefas from './components/tasks/Tarefas.tsx';
 
 let router = createBrowserRouter([
     {
@@ -50,18 +44,6 @@ let router = createBrowserRouter([
             {
                 path: '/hooks',
                 element: <SelectHook />,
-            },
-            {
-                path: '/state',
-                element: <State />,
-            },
-            {
-                path: '/ref',
-                element: <Ref />,
-            },
-            {
-                path: '/effect',
-                element: <Effect />,
             },
             {
                 path: '/tarefas/',

@@ -29,7 +29,7 @@ const CreateTreino = () => {
         };
 
         console.log('Treino criado:', newTraining);
-        Training.createTraining(newTraining)
+        Training.addTraining(newTraining)
             .then(() => console.log('ok'))
             .catch((err) => alert(err));
     };

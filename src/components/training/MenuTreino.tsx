@@ -2,6 +2,7 @@ import imageTrainner from '../../assets/Treino-de-Hipertrofia.jpg';
 import { useNavigate } from 'react-router-dom';
 
 const MenuTreino = () => {
+    
     const navigate = useNavigate();
 
     return (

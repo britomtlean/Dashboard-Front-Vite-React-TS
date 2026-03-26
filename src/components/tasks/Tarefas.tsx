@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect} from 'react';
-import { Task } from '../data/Task';
 import { FaCircleCheck } from 'react-icons/fa6';
+import { Task } from '../../data/Task';
 
 type TaskModel = {
     id?: number,
