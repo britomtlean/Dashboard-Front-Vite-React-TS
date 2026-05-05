@@ -58,7 +58,7 @@ let router = createBrowserRouter([
                 element: <DiaTreino />,
             },
             {
-                path: '/criar-treino',
+                path: '/criar-treino/',
                 element: <CreateTreino />,
             },
             {

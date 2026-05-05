@@ -3,11 +3,17 @@ import type { TrainingBody } from '../../types/Training';
 import { Training } from '../../data/Training';
 import { DiaSemana } from '../../types/EnumDiaSemana'
 import useTraining from '../../hooks/useTraining';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 
 const CreateTreino = () => {
 
     const navigate = useNavigate();
+
+    //params
+    const [searchParams] = useSearchParams();
+    const day = searchParams.get('day');
+    console.log(day)
+
 
      const { musculos } = useTraining();
 
@@ -40,8 +46,8 @@ const CreateTreino = () => {
     return (
         <div className="flex flex-col gap-2 justify-center items text-left w-full
             md:w-1/2">
-            <h1>Dia da semana</h1>
-            <select ref={refDia} className="bg-white p-2" required>
+            <h1>Dia da semana:</h1>
+            <select ref={refDia} className="bg-white p-2" required defaultValue={day as string}>
                 <option value="">Selecione um dia:</option>
 
                 <option value={DiaSemana.Domingo}>Domingo</option>
