@@ -45,10 +45,10 @@ const DiaTreino = () => {
 
     return (
         <div className="w-full h-full max-w-3xl space-y-5">
-            <div className="text-center text-lg min-h-full w-full flex flex-col gap-4 justify-center items-center">
+            <div className="text-center text-lg min-h-full w-full flex flex-col gap-2.5 justify-center items-center">
                 <select
                     ref={refDia}
-                    className="btn-primary"
+                    className="btn-random bg-slate-700 w-full"
                     value={day}
                     onChange={handleAlterDay}
                     required
@@ -65,7 +65,7 @@ const DiaTreino = () => {
                 </select>
 
                 <button
-                    className="btn-primary"
+                    className="btn-random bg-[#2e1065] w-full"
                     onClick={() => {
                         navigate(`/criar-treino/?day=${day}`);
                     }}
@@ -114,7 +114,7 @@ const DiaTreino = () => {
                             </button>
                         </div>
 
-                        <div className="space-y-4">
+                        <div className="space-y-4 border rounded-md p-4 overflow-y-scroll max-h-[200px]">
                             {treino.Exercicio.map((exercicio: any) => (
                                 <div key={exercicio.id} className="exercicio bg-gray-700 rounded-xl p-4">
                                     <h4 className="text-md font-semibold text-green-300 mb-2">
