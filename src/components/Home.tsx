@@ -76,17 +76,20 @@ const Home = ({ children }: Props) => {
                         <Link className="w-full py-3 text-center" to={'/treino'} onClick={() => setMenu(false)}>
                             Treino
                         </Link>
+                        <Link className="w-full py-3 text-center" to={'/timer'} onClick={() => setMenu(false)}>
+                            Cronometro
+                        </Link>
                     </div>
                 </nav>
 
                 <button data-element="Theme" className="flex gap-4">
                     <VscColorMode className="text-2xl text-white" onClick={alterTheme} />
-                    <h1 className="font-black text-white">Theme</h1>
+                    <h1 className="font-black text-white"></h1>
                 </button>
 
                 <div
                     data-element="User"
-                    className="flex flex-row gap-4 items-center justify-center text-white font-black p-4 bg-gray-400/60 rounded-[100%] focus:bg-slate-600"
+                    className="flex flex-row gap-4 items-center justify-center text-white font-black p-2 bg-gray-400/60 rounded-[100%] focus:bg-slate-600"
                     onClick={clickConfig}
                 >
                     <div
