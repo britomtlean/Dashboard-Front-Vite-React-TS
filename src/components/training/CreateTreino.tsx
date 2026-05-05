@@ -4,6 +4,7 @@ import { Training } from '../../data/Training';
 import { DiaSemana } from '../../types/EnumDiaSemana'
 import useTraining from '../../hooks/useTraining';
 import { useNavigate, useSearchParams } from 'react-router-dom';
+import corrida from '../../assets/corrida.jpg';
 
 const CreateTreino = () => {
 
@@ -75,8 +76,12 @@ const CreateTreino = () => {
                     className="bg-blue-500 flex-1 text-white py-2 p-6 rounded cursor-pointer border-gray-300 mt-4"
                     onClick={handleCreateTrainningBody}
                 >
-                    Enviar
+                    Criar
                 </button>
+            </div>
+
+            <div className='mt-4'>
+                <img src={corrida} alt=""  className='opacity-80 rounded-lg' />
             </div>
         </div>
     );
